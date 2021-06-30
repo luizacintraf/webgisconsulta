@@ -81,14 +81,14 @@ layerList.on("trigger-action", function(event) {
     // increase the opacity of the GroupLayer by 0.25.
 
     if (visibleLayer.opacity < 1) {
-        visibleLayer.opacity += 0.25;
+        visibleLayer.opacity += 0.10;
     }
   } else if (id === "decrease-opacity") {
     // If the decrease-opacity action is triggered, then
     // decrease the opacity of the GroupLayer by 0.25.
 
     if (visibleLayer.opacity > 0) {
-        visibleLayer.opacity -= 0.25;
+        visibleLayer.opacity -= 0.10;
     }
   }
 });
