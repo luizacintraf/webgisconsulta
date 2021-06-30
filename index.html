@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <title>
-        Edit features with the Editor widget | Sample | ArcGIS API for JavaScript 4.18
+        EU Urbano
     </title>
 
     <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css" />
@@ -22,14 +22,21 @@
 
 <body>
     <div id="sidebar">
-        <h2>EU Urbano - Sete Lagoas</h2>
-
+        <div id="head">
+        <img src="content/EU URBANO.png">
+        <h3 style="margin: auto;">Sete Lagoas</h3>
+    </div>
         <div class="Basemaps">
-            <h4>Escolha um mapa base</h4>
+            <h5>Mude o mapa base</h5>
             <div id="basemapdiv"></div>
         </div>
         <div class="Layerlist">
-            <h4>Escolha uma camada</h4>
+
+            <h5>Adicione uma camada no mapa</h5>
+            <div id="search">
+                <i class="esri-icon-search"></i>
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar camadas..">
+            </div>
             <div id="layerlistdiv"></div>
         </div>
     </div>

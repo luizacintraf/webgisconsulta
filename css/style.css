@@ -30,26 +30,45 @@ body{
 
 #sidebar{
     width: 25vw;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
 
+#head{
+    height: 22vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .Basemaps{
     width: 100%;
-    /* height: 30vh; */
+    height: 22vh;
 }
 
 .Layerlist{
     width: 100%;
-    height: 100%;
+    height: 50vh;
+}
+
+#head img{
+    max-height: 80%;
+}
+
+#head h3{
+    margin: 0px;
+    padding: 0px;
+    flex-grow: 1;
 }
 
 #basemapdiv{
-    height: 20vh;
+    height: 18vh;
 }
 
 #layerlistdiv{
-    height: 50vh
+    height: 45vh
 }
 
 .esri-editor .esri-item-list__scroller {
@@ -64,6 +83,25 @@ body{
     align-items: flex-end;
     justify-content: space-between;
 }
+
+#search{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#myInput {
+    /* background-image: 'esri-icon-search'; */
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 70%;
+    /* font-size: 16px; */
+    padding: 6px 10px 6px 10px;
+    margin:6px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+   
+  }
 
 
 
@@ -82,8 +120,9 @@ body{
     color: #C1D2DA
 }
 
-h2, h3, h4{
-    color:#43545B
+h2, h3, h4,h5{
+    color:#43545B;
+    margin:5px
 }
 
 .esri-widget{

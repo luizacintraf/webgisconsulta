@@ -1,4 +1,4 @@
-var editor,view
+var editor,view,webmap
 
 
 require([
@@ -27,16 +27,33 @@ require([
     GeoJSONLayer, Expand, BasemapGallery, Search, BasemapToggle, Home, Fullscreen, ScaleBar, Legend, CoordinateConversion, Locate, DistanceMeasurement2D, AreaMeasurement2D, Print, Track, LayerList, Editor
 ) {
     // Create a map from the referenced webmap item id
-    let webmap = new WebMap({
+    webmap = new WebMap({
         portalItem: {
-            id: "b59a89de2a6441b89d864b7afff3ec65"
+            id: "c54b1878230649adb92835afe3f07d87"
         }
     });
+
+    function orderLayers(group){
+        for(let l of group.layers.items){
+            if(l.geometryType=="polygon"){
+                group.reorder(l,(group.layers.items.length-1))
+            }else if(l.geometryType=="point"){
+                group.reorder(l,0)
+            }
+        }
+    }
+
+    webmap.when(()=>{
+        orderLayers(webmap)
+    })
+    
+
 
     view = new MapView({
         container: "viewDiv",
         map: webmap
     });
+    view.popup.defaultPopupTemplateEnabled=true
     view.ui.empty("top-left");
 
     view.when(function() {
@@ -175,3 +192,4 @@ require([
 
 
 });
+

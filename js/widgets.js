@@ -1,4 +1,5 @@
 
+var layerList
 require([
     "esri/WebMap",
     "esri/views/MapView",
@@ -25,12 +26,72 @@ require([
     GeoJSONLayer, Expand, BasemapGallery, Search, BasemapToggle, Home, Fullscreen, ScaleBar, Legend, CoordinateConversion, Locate, DistanceMeasurement2D, AreaMeasurement2D, Print, Track, LayerList, Editor, Zoom
 ) {
 
-    var layerList = new LayerList({
+    layerList = new LayerList({
         view: view,
-        container: document.getElementById("layerlistdiv")
+        container: document.getElementById("layerlistdiv"),
+        listItemCreatedFunction: defineActions
     });
 
     layerList.selectionEnabled = true
+
+    
+
+function defineActions(event) {
+
+
+  var item = event.item;
+
+
+    item.actionsSections = [
+      [
+        {
+          title: "Go to full extent",
+          className: "esri-icon-zoom-out-fixed",
+          id: "full-extent"
+        }
+      ],
+      [
+        {
+          title: "Increase opacity",
+          className: "esri-icon-up",
+          id: "increase-opacity"
+        },
+        {
+          title: "Decrease opacity",
+          className: "esri-icon-down",
+          id: "decrease-opacity"
+        }
+      ]
+    ];
+}
+ 
+ 
+layerList.on("trigger-action", function(event) {
+  // The layer visible in the view at the time of the trigger.
+  
+  var visibleLayer = event.item.layer
+
+  // Capture the action id.
+  var id = event.action.id;
+
+  if (id === "full-extent") {
+    view.extent= visibleLayer.fullExtent;
+  } else if (id === "increase-opacity") {
+    // If the increase-opacity action is triggered, then
+    // increase the opacity of the GroupLayer by 0.25.
+
+    if (visibleLayer.opacity < 1) {
+        visibleLayer.opacity += 0.25;
+    }
+  } else if (id === "decrease-opacity") {
+    // If the decrease-opacity action is triggered, then
+    // decrease the opacity of the GroupLayer by 0.25.
+
+    if (visibleLayer.opacity > 0) {
+        visibleLayer.opacity -= 0.25;
+    }
+  }
+});
 
     // view.ui.add(new Expand({
     //     view: view,
@@ -89,4 +150,26 @@ require([
     //     index: 1
     // });
 
+
+
+
 })
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    console.log(input)
+    filter = input.value.toUpperCase();
+    ul = layerList.container.querySelector('ul')
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        
+        txtValue =li[i].querySelector('.esri-layer-list__item-title').title;
+        // console.log(a)
+        // txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
