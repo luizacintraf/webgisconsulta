@@ -1,5 +1,6 @@
 var editor,view,webmap
 
+$("startmodal").modal()
 
 require([
     "esri/WebMap",
