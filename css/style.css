@@ -132,3 +132,7 @@ h2, h3, h4,h5{
     pointer-events: auto;
     border-radius: 30%;
 }
+
+#modalimages img{
+    max-width: 10%;
+}

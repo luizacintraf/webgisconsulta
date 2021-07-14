@@ -26,6 +26,8 @@ require([
     GeoJSONLayer, Expand, BasemapGallery, Search, BasemapToggle, Home, Fullscreen, ScaleBar, Legend, CoordinateConversion, Locate, DistanceMeasurement2D, AreaMeasurement2D, Print, Track, LayerList, Editor, Zoom
 ) {
 
+
+
     layerList = new LayerList({
         view: view,
         container: document.getElementById("layerlistdiv"),
@@ -95,8 +97,8 @@ layerList.on("trigger-action", function(event) {
 
     // view.ui.add(new Expand({
     //     view: view,
-    //     content: layerList.container,
-    //     expandTooltip: "Camadas",
+    //     content: document.getElementById('infos'),
+    //     expandTooltip: "Informações",
     //     expanded: false,
     //     group: "top-left",
     //     expandIconClass: "esri-icon-handle-vertical"
@@ -142,6 +144,7 @@ layerList.on("trigger-action", function(event) {
               //scale bar widget
     var scaleBar = new ScaleBar({
         view: view,
+        style:"ruler",
         container:document.getElementById("scale")
     });
 
