@@ -30,7 +30,7 @@ require([
     // Create a map from the referenced webmap item id
     webmap = new WebMap({
         portalItem: {
-            id: "c54b1878230649adb92835afe3f07d87"
+            id: "b0558e318b7c4034998cda65847a0f91"
         }
     });
 
