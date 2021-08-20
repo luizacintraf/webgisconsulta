@@ -16,6 +16,24 @@ body{
 
 }
 
+.modal-dialog {
+    max-width: 700px;
+    margin: 1.75rem auto;
+}
+
+.modal-body{
+    padding: 4%;
+}
+
+p{
+    text-align: justify;
+}
+
+.developers{
+    margin-left: 47%;
+    font-style: italic;
+}
+
 /* body{
     display: flex;
     flex-direction: row;
@@ -135,4 +153,11 @@ h2, h3, h4,h5{
 
 #modalimages img{
     max-width: 10%;
+     
+}
+
+#modalimages{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
 }
