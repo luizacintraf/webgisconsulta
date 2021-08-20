@@ -18,7 +18,7 @@ body{
 }
 
 .modal-dialog {
-    max-width: 700px;
+    max-width: 50%;
     margin: 1.75rem auto;
 }
 
@@ -31,7 +31,10 @@ p{
 }
 
 .developers{
-    margin-left: 47%;
+    /* display: flex;
+    align-items: flex-end; */
+    /* margin-left: 55%; */
+    text-align: end;
     font-style: italic;
 }
 
@@ -81,11 +84,13 @@ p{
 .modal-header img{
     max-height: 7vh;
 }
+.modal-header{
+    align-items: center
+}
+
 
 .modal-header h3{
-    font-size: 1.2rem;
-    align-items: center;
-    margin: center;
+    font-size: 1.4rem;
 }
 
 #head h3{
@@ -207,13 +212,36 @@ h5{
     border-radius: 30%;
 }
 
-#modalimages img{
+/* #modalimages img{
     max-width: 10%;
      
-}
+} */
 
 #modalimages{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
 }
+
+.square {
+    height: 50px;
+    width: 50px;
+    background-color: #555;
+  }
+
+  .circle {
+    height: 50px;
+    width: 50px;
+    background-color: #555;
+    border-radius: 50%;
+  }
+
+  .triangle-up {
+	width: 0;
+	height: 0;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	border-bottom: 50px solid #555;
+}
+

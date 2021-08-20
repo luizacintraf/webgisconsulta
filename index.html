@@ -59,7 +59,57 @@
         <div id=scale></div>
     </div>
 
-    <div class="modal fade" id="startmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="startmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        
+        <div class="modal-content">
+          <div class="modal-header">
+            <img src="content/EU URBANO.png">
+            <h3 class="modal-title" id="exampleModalLongTitle">EU Urbano</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+          <div class="modal-body">
+        
+            <div class="modal-split">
+              <p>
+                A cidade é produto da coletividade! Independente do conceito, a cidade enquanto construção é consequência de um modo de vida que ali se consolidou, o urbano. Embora a cidade seja esse fenômeno coletivo, é na construção das suas subjetividades que os indivíduos constroem também o espaço ao seu redor. Quem é o seu eu urbano? 
+              </p>
+              <p>
+                Um dos maiores desafios dos planejadores atualmente é conseguir dar voz para os diferentes atores que diuturnamente trabalham para a construção e a transformação desse espaço, como ouvir suas demandas em uma unidade espacial tão diversa? Esta pergunta não é fácil de ser respondida, mas já sabemos que sua solução passa necessariamente pela construção de uma estrutura de governança e gestão urbana que acesse os anseios e as contribuições da população. 
+                </p>
+                <p>As geotecnologias têm papel fundamental nesse processo, por facilitar o acesso e criar uma ponte de interação entre os dados espaciais que caracterizam e descrevem esses espaços em transformação e por permitir a coleta e o feedback de informação em diferentes escalas e camadas!
+              </p>
+              <p>
+                <b>
+              Essa estratégia que aqui apresentamos tem esse objetivo de servir como instrumento de simples apropriação para dar voz aos atores sociais nos diferentes cantos da cidade, ao opinar, sugerir, informar sobre elementos do espaço e apresentar sua visão de mundo sobre os objetos no espaço o indivíduo é chamado a construir sua identidade urbana e colaborar com a transformação do espaço em sua volta, entre, fique a vontade, a casa é literalmente sua, contribua, interaja com a ferramenta e deixe sua marca.
+            </b>
+              </p>
+              <p class="developers">
+                  Desenvolvido por Luiza Fernandes e Max Paulo
+              </p>
+              <div id="modalimages">
+                <p><b>Apoio:</b></p>
+                <img style="max-height: 6vh;" src="content/CAPES.png">
+              <img style="max-width: 15%;" src="content/ufmg.png">
+            </div>
+        </div>
+        
+        <div class="modal-split">
+        <p>
+          Para interagir você pode adicionar elementos no mapa indicando que tipo de intervenção deve ser feita em determinado local. Podendo indicar o que deve ser criado, adequado ou excluido nas categorias Equipamento urbano, Infraestrutura e Análise ambiental. </p>
+          <p>
+          Para contribuir selecione na caixa a direita <b>"Adicionar Evento"</b> e o tipo de evento que você deseja selecionar. Depois preencha o formulário indicando qual o tipo de intervenção, qual a caracteristica da pessoa que esta preenchendo e o comentário sobre o que deve ser intervido.</p>
+        	
+    
+          </div>
+    
+          <div class="modal-footer">
+          </div>
+
+    <!-- <div class="modal fade" id="startmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -85,8 +135,9 @@
                   Desenvolvido por Luiza Fernandes e Max Paulo
               </p>
               <div id="modalimages">
-                <img src="content/CAPES.png">
-              <img src="content/ufmglogo.jpeg">
+                <p><b>Apoio:</b></p>
+                <img style="max-height: 6vh;" src="content/CAPES.png">
+              <img style="max-width: 15%;" src="content/ufmg.png">
             </div>
             </div>
             <div class="modal-footer">
@@ -94,10 +145,101 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 </body>
 <script>
     $("#startmodal").modal()
+
+    $(document).ready(function() {
+  prep_modal();
+});
+
+function prep_modal()
+{
+  $(".modal").each(function() {
+
+  var element = this;
+	var pages = $(this).find('.modal-split');
+
+  if (pages.length != 0)
+  {
+    	pages.hide();
+    	pages.eq(0).show();
+
+    	var b_button = document.createElement("button");
+                b_button.setAttribute("type","button");
+          			b_button.setAttribute("class","btn btn-secondary");
+          			b_button.setAttribute("style","display: none;");
+          			b_button.innerHTML = "Back";
+
+    	var n_button = document.createElement("button");
+                n_button.setAttribute("type","button");
+          			n_button.setAttribute("class","btn btn-secondary");
+          			n_button.innerHTML = "Next";
+
+    	$(this).find('.modal-footer').append(b_button).append(n_button);
+
+
+    	var page_track = 0;
+
+    	$(n_button).click(function() {
+        
+        this.blur();
+
+    		if(page_track == 0)
+    		{
+    			$(b_button).show();
+    		}
+
+    		if(page_track == pages.length-2)
+    		{
+    			$(n_button).text("Fechar");
+
+    		}
+
+        if(page_track == pages.length-1)
+        {
+          $("#startmodal").modal('hide')
+        }
+
+    		if(page_track < pages.length-1)
+    		{
+    			page_track++;
+
+    			pages.hide();
+    			pages.eq(page_track).show();
+    		}
+
+
+    	});
+
+    	$(b_button).click(function() {
+
+    		if(page_track == 1)
+    		{
+    			$(b_button).hide();
+    		}
+
+    		if(page_track == pages.length-1)
+    		{
+    			$(n_button).text("Next");
+    		}
+
+    		if(page_track > 0)
+    		{
+    			page_track--;
+
+    			pages.hide();
+    			pages.eq(page_track).show();
+    		}
+
+
+    	});
+
+  }
+
+  });
+}
 </script>
 
 </html>
