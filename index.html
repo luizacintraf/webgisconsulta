@@ -2,87 +2,118 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>
-        EU Urbano
-    </title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>
+    EU Urbano
+  </title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://js.arcgis.com/4.18/"></script>
 
-    <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="https://js.arcgis.com/4.18/"></script>
+  <style>
 
-    <style>
+  </style>
 
-    </style>
-
-    <script src="js/index.js"></script>
-    <script src="js/widgets.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/widgets.js"></script>
 </head>
 
 <body>
-    <div id="sidebar">
-        <div id="head">
-        <img src="content/EU URBANO.png">
-        <h3 style="margin: auto;">Sete Lagoas</h3>
+  <div id="sidebar">
+    <div id="head">
+      <img src="content/EU URBANO.png">
+      <h3 style="margin: auto;">Sete Lagoas</h3>
     </div>
-        <div class="Basemaps">
-            <h5>Mude o mapa base</h5>
-            <div id="basemapdiv"></div>
-        </div>
-        <div class="Layerlist">
+    <div class="Basemaps">
+      <h5>Mude o mapa base</h5>
+      <div id="basemapdiv"></div>
+    </div>
+    <div class="Layerlist">
 
-            <h5>Adicione uma camada no mapa</h5>
-            <div id="search">
-                <i class="esri-icon-search"></i>
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar camadas..">
-            </div>
-            <div id="layerlistdiv"></div>
-        </div>
+      <h5>Adicione uma camada no mapa</h5>
+      <div id="search">
+        <i class="esri-icon-search"></i>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar camadas..">
+      </div>
+      <div id="layerlistdiv"></div>
     </div>
-    <div id="viewDiv"></div>
-    
-    <div id="editorDiv"></div>
-    <div id="left-widgets">
-        <div id=zoom></div>
-        <div id=home></div>
-        <div id=expand></div>
-        <br>
-        <div id=scale></div>
-    </div>
+  </div>
+  
+  <div id="viewDiv"></div>
+  <div id="legend" hidden="true"></div>
+  <div id="editorDiv" hidden="true"></div>
 
-    <div class="modal fade" id="startmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">EU Urbano</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae metus quis dolor consequat molestie. Sed euismod sagittis augue. Cras vitae dui nunc. Vivamus molestie tempus eros, non efficitur ipsum euismod sed. Aenean quis sapien neque. Aenean diam tellus, convallis sit amet mattis sed, euismod sed velit. Duis tincidunt, risus eu tempor porttitor, felis libero convallis libero, in condimentum tellus leo non libero. Duis suscipit est in magna volutpat rutrum. Maecenas posuere nibh ipsum, vitae commodo dui volutpat eget. Maecenas egestas nunc cursus leo tincidunt tempor a ut lacus. Morbi viverra erat et turpis fringilla hendrerit. Vestibulum ornare diam eu lorem congue, sit amet semper purus placerat. Donec faucibus urna nibh, a vestibulum ex facilisis rhoncus. Aliquam congue scelerisque porta.
-              </p>
-              <p>
-                  Desenvolvido por Luiza e Max
-              </p>
-              <div id="modalimages">
-                <img src="content/CAPES.png">
-              <img src="content/ufmglogo.jpeg">
-            </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+  <div id="navbar_mobile">
+    <div class="buttons_nav"><button id="openNav"><i class="esri-icon-basemap"></i></button>Camadas</div>
+    <div class="buttons_nav"><button id="plus"><i class="esri-icon-plus"></i></button>Contribuir</div>
+    <div class="buttons_nav"><button id="openLegend"><i class="esri-icon-legend"></i></button>Legenda</div>
+  </div>
+
+ 
+  <div id="left-widgets">
+    <div id=zoom></div>
+    <div id=home></div>
+    <div id=expand></div>
+    <br>
+    <div id=scale></div>
+  </div>
+
+  <!-- <div class="support-button" id="like">
+    <button class="like"><i class="fa fa-thumbs-o-up" style="font-size:24px"></i></button>
+    <div>0</div> -->
+
+
+  </div>
+
+  <div class="modal fade" id="startmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">EU Urbano</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae metus quis dolor consequat molestie.
+            Sed euismod sagittis augue. Cras vitae dui nunc. Vivamus molestie tempus eros, non efficitur ipsum euismod
+            sed. Aenean quis sapien neque. Aenean diam tellus, convallis sit amet mattis sed, euismod sed velit. Duis
+            tincidunt, risus eu tempor porttitor, felis libero convallis libero, in condimentum tellus leo non libero.
+            Duis suscipit est in magna volutpat rutrum. Maecenas posuere nibh ipsum, vitae commodo dui volutpat eget.
+            Maecenas egestas nunc cursus leo tincidunt tempor a ut lacus. Morbi viverra erat et turpis fringilla
+            hendrerit. Vestibulum ornare diam eu lorem congue, sit amet semper purus placerat. Donec faucibus urna nibh,
+            a vestibulum ex facilisis rhoncus. Aliquam congue scelerisque porta.
+          </p>
+          <p>
+            Desenvolvido por Luiza e Max
+          </p>
+          <div id="modalimages">
+            <img src="content/CAPES.png">
+            <img src="content/ufmglogo.jpeg">
           </div>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
+    </div>
+  </div>
 </body>
 
 </html>

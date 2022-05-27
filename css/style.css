@@ -136,3 +136,95 @@ h2, h3, h4,h5{
 #modalimages img{
     max-width: 10%;
 }
+
+.support-button {
+    border-radius: 19px;
+    border: #bfc3c7 solid 2px;
+    display: flex;
+    flex-direction: row;
+    margin: 3px;
+    padding: 2px;
+    width: 5rem;
+}
+
+.like {
+    background-color: #2883de;
+    border: 2px #2883de solid;
+    color: white;
+    border-radius: 47px;
+    width: 3rem;
+}
+
+.like:disabled{
+    background-color: #bfc3c7;
+    border: 2px #bfc3c7 solid;
+    color: white;
+    border-radius: 47px;
+    width: 3rem;
+}
+
+#number_likes {
+    margin: 10px;
+    font-weight: bold;
+    color: #4c4f52;
+}
+
+
+.esri-widget__table tr th {
+    font-weight: bold;
+}
+
+#legend{
+    height: 0vh;
+}
+
+@media (max-width: 600px)
+{
+
+    #sidebar{
+        width: 100vw;
+        /* height: 0vh; */
+    }
+
+    .Layerlist {
+        width: 100%;
+        height: 45vh;
+    }
+
+    #navbar_mobile{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 10px;
+
+    }
+
+    body{
+        flex-direction: column;
+    
+    }
+
+    #navbar_mobile button{
+        border-radius: 75px;
+        margin: 0px 20px;
+        background-color: transparent;
+        border: 2px solid;
+        /* padding: 5px; */
+        font-weight: bold;
+    }
+
+    .buttons_nav{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #legend{
+        height: 80vh;
+    }
+
+    #layerlistdiv{
+        height: 25vh
+    }
+    
+
+}
