@@ -1,6 +1,5 @@
 var editor, view, webmap, featureLayer
 
-$("startmodal").modal()
 
 const selectButton = (event, oid) => {
     var likes = Number(document.getElementById("number_likes").innerHTML);
