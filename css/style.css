@@ -265,13 +265,21 @@ h5{
     height: 0vh;
 }
 
+/* #navbar_mobile{
+    visibility: hidden;
+    width: 0
+} */
+
 @media (max-width: 600px)
 {
 
     #sidebar{
         width: 100vw;
+        /* visibility: hidden; */
         /* height: 0vh; */
     }
+
+    
 
     .Layerlist {
         width: 100%;

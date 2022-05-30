@@ -1,68 +1,18 @@
 var editor, view, webmap, featureLayer
 
-
-const selectButton = (event, oid) => {
-    var likes = Number(document.getElementById("number_likes").innerHTML);
-
-    likes = likes + 1;
-
-    let idsLiked = localStorage.getItem("likes") ? JSON.parse(localStorage.getItem("likes")) : [];
-    idsLiked.push(oid);
-    localStorage.setItem("likes", JSON.stringify(idsLiked));
-
-    featureLayer.queryFeatures({
-        objectIds: [oid],
-        outFields: ["*"],
-        returnGeometry: true
-    }).then(f => {
-        f.features.forEach(element => {
-
-            element.attributes.support = likes
-
-            console.log(element)
-
-
-        });
-
-        featureLayer.applyEdits({
-            updateFeatures: f.features
-        }).then((edits) => console.log(edits));
-
-        $("#btn_like").prop("disabled", true)
-
-
-    })
-    // console.log({globalId:id,  OBJECTID :oid, support: likes})
-
-    document.getElementById("number_likes").innerHTML = likes
-}
-
 require([
     "esri/WebMap",
     "esri/views/MapView",
-    "esri/layers/GeoJSONLayer",
     "esri/widgets/Expand",
-    "esri/widgets/BasemapGallery",
     "esri/widgets/Search",
-    "esri/widgets/BasemapToggle",
-    "esri/widgets/Home",
-    "esri/widgets/Fullscreen",
-    "esri/widgets/ScaleBar",
     "esri/widgets/Legend",
-    "esri/widgets/CoordinateConversion",
-    "esri/widgets/Locate",
-    "esri/widgets/DistanceMeasurement2D",
-    "esri/widgets/AreaMeasurement2D",
-    "esri/widgets/Print",
-    "esri/widgets/Track",
-    "esri/widgets/LayerList",
     "esri/widgets/Editor",
     "esri/popup/content/CustomContent",
     "esri/PopupTemplate"
 ], function (
     WebMap,
     MapView,
-    GeoJSONLayer, Expand, BasemapGallery, Search, BasemapToggle, Home, Fullscreen, ScaleBar, Legend, CoordinateConversion, Locate, DistanceMeasurement2D, AreaMeasurement2D, Print, Track, LayerList, Editor, CustomContent, PopupTemplate
+    Expand, Search, Legend, Editor, CustomContent, PopupTemplate
 ) {
     // Create a map from the referenced webmap item id
     webmap = new WebMap({
@@ -248,9 +198,19 @@ require([
 
 
 
-    if (window.matchMedia("(min-width: 767px)").matches) {
+    if (window.matchMedia("(max-width: 600px)").matches) {
 
-        //legend widget
+        document.getElementById("sidebar").hidden = true
+
+        var legend = new Legend({
+            view: view,
+            layout: "auto",
+            container: document.getElementById("legend")
+        });
+        
+    } else {
+
+
         var legend = new Legend({
             view: view,
             layout: "auto",
@@ -269,15 +229,11 @@ require([
 
 
         view.ui.add(expand, "bottom-left");
-    } else {
 
-        document.getElementById("sidebar").hidden = true
+    document.getElementById("navbar_mobile").hidden = true
 
-        var legend = new Legend({
-            view: view,
-            layout: "auto",
-            container: document.getElementById("legend")
-        });
+
+
 
     }
 
