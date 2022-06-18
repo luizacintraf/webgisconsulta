@@ -48,7 +48,7 @@
       <h5>Adicione uma camada no mapa</h5>
       <div id="search">
         <i class="esri-icon-search"></i>
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar camadas..">
+        <input type="text" id="myInput" onkeyup="searchLayers()" placeholder="Buscar camadas..">
       </div>
       <div id="layerlistdiv"></div>
     </div>
@@ -129,6 +129,13 @@
           </div>
 
           <div class="modal-footer">
+          </div>
+
+          <div id="left-widgets">
+            <div id= "home"></div>
+            <div id="expand"></div>
+            <div id="zoom"></div>
+            <div id="scale"></div>
           </div>
 
           <!-- <div class="modal fade" id="startmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
