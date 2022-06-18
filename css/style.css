@@ -256,6 +256,18 @@ h5{
     color: #4c4f52;
 }
 
+#opinion{
+    position: absolute;
+    width: 10vw;
+    right: 68vw;
+    bottom: 77vh;
+}
+
+#opinion div{
+    color: #4c4f52 !important;
+
+}
+
 
 .esri-widget__table tr th {
     font-weight: bold;
@@ -269,6 +281,8 @@ h5{
     visibility: hidden;
     width: 0
 } */
+
+
 
 @media (max-width: 600px)
 {
@@ -319,6 +333,10 @@ h5{
 
     #layerlistdiv{
         height: 25vh
+    }
+
+    .modal-dialog{
+        max-width: 100%;
     }
     
 

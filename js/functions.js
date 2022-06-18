@@ -1,4 +1,10 @@
 const selectButton = (oid) => {
+  /**
+   * Function to like the given attribute pressed
+   * @date 2022-06-18
+   * @param {string} oid
+   */
+
   var likes = Number(document.getElementById("number_likes").innerHTML);
 
   likes = likes + 1;
@@ -18,8 +24,6 @@ const selectButton = (oid) => {
     .then((f) => {
       f.features.forEach((element) => {
         element.attributes.support = likes;
-
-        console.log(element);
       });
 
       featureLayer
@@ -30,7 +34,7 @@ const selectButton = (oid) => {
 
       $("#btn_like").prop("disabled", true);
     });
-  // console.log({globalId:id,  OBJECTID :oid, support: likes})
+
 
   document.getElementById("number_likes").innerHTML = likes;
 };

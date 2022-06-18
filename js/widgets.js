@@ -17,6 +17,7 @@ require([
   LayerList,
   Zoom
 ) {
+  
   //get the urls for downloads
   fetch("content/layers.json")
     .then((res) => res.json())
@@ -108,13 +109,7 @@ require([
 
       //get the url from the visible layer
       var url = links.find((el) => el.titulo == visibleLayer.title).link;
-
-      var link = document.createElement("a");
-      link.setAttribute("download", `${visibleLayer.title}.zip`);
-      link.href = url;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
+      window.open(url);
     }
   });
 
