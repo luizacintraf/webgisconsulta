@@ -9,6 +9,8 @@ require([
   "esri/widgets/Editor",
   "esri/popup/content/CustomContent",
   "esri/PopupTemplate",
+  "esri/widgets/FeatureForm",
+  "esri/form/FormTemplate"
 ], function (
   WebMap,
   MapView,
@@ -17,7 +19,9 @@ require([
   Legend,
   Editor,
   CustomContent,
-  PopupTemplate
+  PopupTemplate,
+  FeatureForm,
+  FormTemplate
 ) {
   // Create a map from the referenced webmap item id
   webmap = new WebMap({
@@ -25,6 +29,15 @@ require([
       id: "2c4bfaf6b251459b9107376566970978",
     },
   });
+
+    view = new MapView({
+    container: "viewDiv",
+    map: webmap,
+  });
+
+  view.popup.defaultPopupTemplateEnabled = true;
+
+  view.ui.empty("top-left");
 
   webmap.when(() => {
     orderLayers(webmap);
@@ -87,21 +100,42 @@ require([
       ],
     });
 
-    featureLayer.popupTemplate = template;
 
-    view.when(function () {
-      // create editor widget
-      editor = new Editor({
-        view: view,
-        container: document.getElementById("editorDiv"),
-        allowedWorkflows: ["create"],
-        layerInfos: [
+      const formTemplate = new FormTemplate({
+        title: "Damage assessments",
+        description: "Provide information for insurance",
+        elements: [{ // Autocasts to new GroupElement
+          type: "group",
+          label: "Inspector Information",
+          description: "Field inspector information",
+          elements: [              {
+            type: "field",
+            fieldName: "Categoria",
+            label: "Categoria",
+          },
           {
-            view: view,
-            layer: featureLayer,
-            formTemplate: {
-              elements: [
-                {
+            type: "field",
+            fieldName: "Tipodeintervencao",
+            label: "Tipo de intervenção",
+          },
+          {
+            type: "field",
+            fieldName: "Pessoa",
+            label: "Pessoa",
+          },
+          {
+            type: "field",
+            fieldName: "Comentario",
+            label: "Comentário",
+          }]
+        }]
+      });
+
+    var editorTemplate = {
+        layer: featureLayer, // pass in the feature layer,
+        formTemplate:  { // autocastable to FormTemplate
+          elements: [
+              {
                   type: "field",
                   fieldName: "Categoria",
                   label: "Categoria",
@@ -120,16 +154,26 @@ require([
                   type: "field",
                   fieldName: "Comentario",
                   label: "Comentário",
-                },
-              ],
-            },
-            enabled: true, // default is true, set to false to disable editing functionality
-            addEnabled: true, // default is true, set to false to disable the ability to add a new feature
-            updateEnabled: false, // default is true, set to false to disable the ability to edit an existing feature
-            deleteEnabled: false, // default is true, set to false to disable the ability to delete features
-          },
-        ],
+                }
+          ]
+        },
+        enabled: true, // default is true, set to false to disable editing functionality
+        addEnabled: true, // default is true, set to false to disable the ability to add a new feature
+        updateEnabled: false, // default is true, set to false to disable the ability to edit an existing feature
+        deleteEnabled: false // default is true, set to false to disable the ability to delete features
+      }
+
+    featureLayer.popupTemplate = template;
+
+    view.when(function () {
+      // create editor widget
+      editor = new Editor({
+        view: view,
+        container: document.getElementById("editorDiv"),
+        allowedWorkflows: ["create"],
+        layerInfos: [editorTemplate]
       });
+
 
       editor.when(() => {
         editor.messages.addFeature = "Adicionar Evento";
@@ -138,9 +182,12 @@ require([
         editor.messages.clickToAddPoint =
           "Click no mapa para adicionar o ponto";
         editor.messages.placeFeature = "Adicionar ponto";
+
+        //document.querySelectorAll(".esri-feature-form__label")[4].hidden=true
       });
 
-      if (window.matchMedia("(min-width: 767px)").matches) {
+      if (window.matchMedia("(min-width: 830px)").matches) {
+
         document.getElementById("editorDiv").hidden = false;
 
         view.ui.add(document.getElementById("editorDiv"), "top-right");
@@ -148,16 +195,9 @@ require([
     });
   });
 
-  view = new MapView({
-    container: "viewDiv",
-    map: webmap,
-  });
 
-  view.popup.defaultPopupTemplateEnabled = true;
 
-  view.ui.empty("top-left");
-
-  if (window.matchMedia("(max-width: 600px)").matches) {
+  if (window.matchMedia("(max-width: 820px)").matches) {
     document.getElementById("sidebar").hidden = true;
 
     var legend = new Legend({
