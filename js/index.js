@@ -140,11 +140,11 @@ require([
                   fieldName: "Categoria",
                   label: "Categoria",
                 },
-                {
-                  type: "field",
-                  fieldName: "Tipodeintervencao",
-                  label: "Tipo de intervenção",
-                },
+//                {
+ //                 type: "field",
+ //                 fieldName: "Tipodeintervencao",
+ //                 label: "Tipo de intervenção",
+ //               },
                 {
                   type: "field",
                   fieldName: "Pessoa",
